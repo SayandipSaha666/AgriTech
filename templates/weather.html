@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech - Weather Forecast</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="{{ url_for('home') }}">AgriTech</a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{url_for('home')}}" class="active">HOME</a></li>
+                    <li><a href="{{url_for('disease_detect')}}">DETECT DISEASE</a></li>
+                    <li><a href="{{url_for('crop_recommend')}}">RECOMMEND CROP</a></li>
+                    <li><a href="{{url_for('weather_page')}}">WEATHER</a></li>
+                    <li><a href="{{url_for('fertilizer')}}">RECOMMEND FERTILIZER</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Weather Forecast</h1>
+            <p>Get accurate weather predictions for agricultural planning</p>
+        </div>
+    </section>
+
+    <section class="weather-search">
+        <div class="container">
+            <div class="search-box">
+                <h2>Check Weather Forecast</h2>
+                <form id="weatherSearchForm" name="location" method="post" action="{{url_for('weather.weather')}}" >
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <div class="location-input">
+                            <input type="text" id="location" name="location" placeholder="Enter city or zip code" required>
+                            <button type="button" id="getCurrentLocation" title="Use current location">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Get Forecast</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="weather-display" id="weatherDisplay" style="display: none;">
+        <div class="container">
+            <div class="current-weather">
+                <div class="weather-location">
+                    <h2 id="weatherLocation"></h2>
+                    <p id="currentDate"></p>
+                </div>
+                <div class="weather-info">
+                    <div class="weather-icon">
+                        <i id="weatherIcon" class="fas fa-sun"></i>
+                    </div>
+                    <div class="weather-temp">
+                        <h2 id="currentTemp"></h2>
+                        <p id="weatherDescription"></p>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail">
+                            <i class="fas fa-wind"></i>
+                            <span>Wind</span>
+                            <p id="windSpeed"></p>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-tint"></i>
+                            <span>Humidity</span>
+                            <p id="humidity"></p>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-cloud-rain"></i>
+                            <span>Precipitation</span>
+                            <p id="precipitation"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="weather-tips">
+        <div class="container">
+            <h2>Weather-Based Farming Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <i class="fas fa-thermometer-three-quarters"></i>
+                    <h3>Heat Management</h3>
+                    <p>During heat waves, water crops early in the morning or late in the evening to minimize evaporation. Consider shade cloth for sensitive crops.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-cloud-rain"></i>
+                    <h3>Rain Preparation</h3>
+                    <p>Before heavy rain, ensure proper drainage in fields. Consider delaying fertilizer application to prevent runoff.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-snowflake"></i>
+                    <h3>Frost Protection</h3>
+                    <p>When frost is predicted, cover sensitive crops with row covers or use sprinkler irrigation to protect from freezing.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-wind"></i>
+                    <h3>Wind Management</h3>
+                    <p>In high wind conditions, delay spraying operations and ensure trellises and supports are secure for tall crops.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html">AgriTech</a>
+                    <p>Modern Solutions for Modern Farming</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="disease-detect.html">Disease Detection</a></li>
+                        <li><a href="crop-preferences.html">Crop Preferences</a></li>
+                        <li><a href="weather.html">Weather</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Farm Road, Agriville, AG 12345</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@agritech.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 AgriTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.getElementById('weatherSearchForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            let location = document.getElementById('location').value;
+
+            fetch('/weather', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ location: location })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.cod === 200) {
+                    document.getElementById('weatherLocation').textContent = data.name + ', ' + data.sys.country;
+                    document.getElementById('currentTemp').textContent = Math.round(data.main.temp - 273.15) + "°C";
+                    document.getElementById('weatherDescription').textContent = data.weather[0].description;
+                    document.getElementById('windSpeed').textContent = data.wind.speed + " km/h";
+                    document.getElementById('humidity').textContent = data.main.humidity + "%";
+                    document.getElementById('precipitation').textContent = data.rain ? data.rain["1h"] + " mm" : "0 mm";
+
+                    document.getElementById('weatherDisplay').style.display = 'block';
+                } else {
+                    alert("Weather data not found for the entered location.");
+                }
+            })
+            .catch(error => console.error('Error fetching weather data:', error));
+        });
+    </script>
+</body>
+</html>

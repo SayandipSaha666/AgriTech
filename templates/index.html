@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech - Home</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">AgriTech</a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{url_for('home')}}" class="active">HOME</a></li>
+                    <li><a href="{{url_for('disease_detect')}}">DETECT DISEASE</a></li>
+                    <li><a href="{{url_for('crop_recommend')}}">RECOMMEND CROP</a></li>
+                    <li><a href="{{url_for('weather_page')}}">WEATHER</a></li>
+                    <li><a href="{{url_for('fertilizer')}}">RECOMMEND FERTILIZER</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Modern Solutions for Modern Farming</h1>
+                <p>Empowering farmers with technology to increase yield and sustainability</p>
+                <a href="#services" class="btn">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-bug"></i>
+                    <h3>Disease Detection</h3>
+                    <p>Identify plant diseases early with our advanced image recognition technology</p>
+                    <a href="disease-detect.html" class="btn-small">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Crop Recommendations</h3>
+                    <p>Get personalized crop suggestions based on your soil and climate conditions</p>
+                    <a href="crop-preferences.html" class="btn-small">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-cloud-sun-rain"></i>
+                    <h3>Weather Forecasts</h3>
+                    <p>Access accurate weather predictions tailored for agricultural planning</p>
+                    <a href="weather.html" class="btn-small">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-flask"></i>
+                    <h3>Fertilizer Recommendations</h3>
+                    <p>Get customized fertilizer suggestions based on soil and crop requirements</p>
+                    <a href="fertilizer-recommendation.html" class="btn-small">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Farmers Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p>"The disease detection feature saved my tomato crop. I identified the blight early and was able to treat it before it spread."</p>
+                    <div class="testimonial-author">
+                        <img src="images/farmer1.jpg" alt="Farmer portrait">
+                        <h4>John Doe</h4>
+                        <p>Vegetable Farmer, Ohio</p>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"The crop recommendation system helped me diversify my farm with crops I hadn't considered before, increasing my overall profitability."</p>
+                    <div class="testimonial-author">
+                        <img src="images/farmer2.jpg" alt="Farmer portrait">
+                        <h4>Sarah Johnson</h4>
+                        <p>Mixed Crop Farmer, Iowa</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html">AgriTech</a>
+                    <p>Modern Solutions for Modern Farming</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="disease-detect.html">Disease Detection</a></li>
+                        <li><a href="crop-preferences.html">Crop Preferences</a></li>
+                        <li><a href="weather.html">Weather</a></li>
+                        <li><a href="fertilizer-recommendation.html">Fertilizer</a></li>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Farm Road, Agriville, AG 12345</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@agritech.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 AgriTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

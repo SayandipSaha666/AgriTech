@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech - Crop Preferences</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">AgriTech</a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{url_for('home')}}" class="active">HOME</a></li>
+                    <li><a href="{{url_for('disease_detect')}}">DETECT DISEASE</a></li>
+                    <li><a href="{{url_for('crop_recommend')}}">RECOMMEND CROP</a></li>
+                    <li><a href="{{url_for('weather_page')}}">WEATHER</a></li>
+                    <li><a href="{{url_for('fertilizer')}}">RECOMMEND FERTILIZER</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Crop Preferences</h1>
+            <p>Find the best crops for your soil and climate conditions</p>
+        </div>
+    </section>
+
+    <section class="crop-preferences">
+        <div class="container">
+            <div class="soil-analyzer">
+                <h2>Soil & Climate Analysis</h2>
+                <form id="soilAnalysisForm" method="POST" action="{{ url_for('crop_recommendation.recommend_crop') }}">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="temperature">Temperature (°C)</label>
+                            <input type="number" name="temp" id="temperature" min="-10" max="50" placeholder="Enter Temperature (°C)" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="humidity">Humidity (%)</label>
+                            <input type="number" name="humidity" id="humidity" min="0" max="100" placeholder="Enter Humidity (%)" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="rainfall">Rainfall (mm/year)</label>
+                            <input type="number" name="rainfall" id="rainfall" min="0" max="5000" placeholder="Enter Rainfall (mm/year)" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nitrogen">Nitrogen (N) Content (mg/kg)</label>
+                            <input type="number" name="N" id="nitrogen" min="0" max="1000" placeholder="Enter Nitrogen Content (mg/kg)" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phosphorous">Phosphorous (P) Content (mg/kg)</label>
+                            <input type="number" name="P" id="phosphorous" min="0" max="1000" placeholder="Enter Phosphorous Content (mg/kg)" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="potassium">Potassium (K) Content (mg/kg)</label>
+                            <input type="number" name="K" id="potassium" min="0" max="1000" placeholder="Enter Potassium Content (mg/kg)" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ph">Soil pH</label>
+                            <input type="number" name="pH" id="ph" min="0" max="14" step="0.1" placeholder="Enter pH" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Get Recommendations</button>
+                    </div>
+                </form>
+            </div>
+            <div class="center-box">
+                <div class="card bg-dark" style="width: 18rem;">
+                    <img src="{{url_for('static', filename='crop.png')}}" style="width: 70px; height: 70px;" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Recommend Crop for Cultivation is:</h5>
+                        <p class="card-text">{{ result }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </section>
+    
+    <section class="crop-tips">
+        <div class="container">
+            <h2>Crop Management Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <i class="fas fa-tint"></i>
+                    <h3>Water Management</h3>
+                    <p>Proper irrigation is crucial for crop success. Different crops have different water requirements. Consider drip irrigation for water conservation.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-bug"></i>
+                    <h3>Pest Control</h3>
+                    <p>Implement integrated pest management (IPM) strategies to minimize chemical use while effectively controlling pests.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Soil Health</h3>
+                    <p>Maintain soil health through crop rotation, cover crops, and appropriate fertilization based on soil tests.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Crop Rotation</h3>
+                    <p>Rotate crops to prevent soil depletion, reduce pest pressure, and improve overall farm productivity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html">AgriTech</a>
+                    <p>Modern Solutions for Modern Farming</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="disease-detect.html">Disease Detection</a></li>
+                        <li><a href="crop-preferences.html">Crop Preferences</a></li>
+                        <li><a href="weather.html">Weather</a></li>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Farm Road, Agriville, AG 12345</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@agritech.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 AgriTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+
+</body>
+</html>

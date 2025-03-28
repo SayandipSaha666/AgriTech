@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech - Fertilizer Recommendation</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">AgriTech</a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{url_for('home')}}" class="active">HOME</a></li>
+                    <li><a href="{{url_for('disease_detect')}}">DETECT DISEASE</a></li>
+                    <li><a href="{{url_for('crop_recommend')}}">RECOMMEND CROP</a></li>
+                    <li><a href="{{url_for('weather_page')}}">WEATHER</a></li>
+                    <li><a href="{{url_for('fertilizer')}}">RECOMMEND FERTILIZER</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Fertilizer Recommendation</h1>
+            <p>Get personalized fertilizer recommendations for your crops</p>
+        </div>
+    </section>
+
+    <section class="fertilizer-recommendation">
+        <div class="container">
+            <div class="recommendation-form">
+                <h2>Enter Soil & Crop Details</h2>
+                <form id="fertilizerForm" method="post" action="{{ url_for('fertilizer.predict_fertilizer') }}" enctype="multipart/form-data">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="temperature">Temperature (°C)</label>
+                            <input type="number" id="temperature" name="temperature" placeholder="Enter Temperature (°C)" min="-10" max="50" required>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="humidity">Humidity (%)</label>
+                            <input type="number" id="humidity" name="humidity" placeholder="Enter Humidity (%)" min="0" max="100" required>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="moisture">Soil Moisture (%)</label>
+                            <input type="number" id="moisture" name="moisture" placeholder="Enter Soil Moisture (%)" min="0" max="100" required>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="soilType">Soil Type</label>
+                            <select id="soilType" name="soilType" required>
+                                <option value="">Select Soil Type</option>
+                                <option value="0">Black</option>
+                                <option value="1">Clayey</option>
+                                <option value="2">Loamy</option>
+                                <option value="3">Red</option>
+                                <option value="4">Sandy</option>
+                            </select>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="cropType">Crop Type</label>
+                            <select id="cropType" name="cropType" required>
+                                <option value="">Select Crop Type</option>
+                                <option value="0">Rice</option>
+                                <option value="1">Wheat</option>
+                                <option value="2">Tobacco</option>
+                                <option value="3">Sugarcane</option>
+                                <option value="4">Pulses</option>
+                                <option value="5">pomegranate</option>
+                                <option value="6">Paddy</option>
+                                <option value="7">Oil seeds</option>
+                                <option value="8">Millets</option>
+                                <option value="9">Maize</option>
+                                <option value="10">Ground Nuts</option>
+                                <option value="11">Cotton</option>
+                                <option value="12">coffee</option>
+                                <option value="13">watermelon</option>
+                                <option value="14">Barley</option>
+                                <option value="15">kidneybeans</option>
+                                <option value="16">orange</option>
+                            </select>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="nitrogen">Nitrogen (N) Content (mg/kg)</label>
+                            <input type="number" id="nitrogen" name="nitrogen" placeholder="Enter Nitrogen Content (mg/kg)" min="0" max="1000" required>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="phosphorous">Phosphorous (P) Content (mg/kg)</label>
+                            <input type="number" id="phosphorous" name="phosphorous" placeholder="Enter Phosphorus Content (mg/kg)" min="0" max="1000" required>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="potassium">Potassium (K) Content (mg/kg)</label>
+                            <input type="number" id="potassium" name="potassium" placeholder="Enter Potassium Content (mg/kg)" min="0" max="1000" required>
+                        </div>
+                    </div>
+            
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Get Fertilizer Recommendation</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="center-box">
+                <div class="card bg-dark" style="width: 18rem;">
+                    <img src="{{ url_for('static', filename='crop.png') }}" style="width: 70px; height: 70px;" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Recommended Fertilizer for Cultivation is:</h5>
+                        <p class="card-text">{{ x }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fertilizer-tips">
+                <h2>Fertilizer Application Tips</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Timing</h3>
+                        <p>Apply fertilizers at the right growth stage of your crop. Most crops need more nutrients during their vegetative and flowering stages.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-tint"></i>
+                        <h3>Moisture</h3>
+                        <p>Apply fertilizers when soil is moist but not waterlogged. This helps in better nutrient absorption and reduces runoff.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Balanced Nutrition</h3>
+                        <p>Ensure balanced nutrition by considering secondary nutrients (Ca, Mg, S) and micronutrients along with NPK.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Organic Matter</h3>
+                        <p>Incorporate organic matter into soil to improve its structure, water-holding capacity, and nutrient retention.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html">AgriTech</a>
+                    <p>Modern Solutions for Modern Farming</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="disease-detect.html">Disease Detection</a></li>
+                        <li><a href="crop-preferences.html">Crop Preferences</a></li>
+                        <li><a href="weather.html">Weather</a></li>
+                        <li><a href="fertilizer-recommendation.html">Fertilizer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Farm Road, Agriville, AG 12345</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@agritech.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 AgriTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/script.js"></script>
+
+</body>
+</html>
